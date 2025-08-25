@@ -1,5 +1,6 @@
 <template>
-  <RouterLink :to="{ name: 'CategoryView', params: { name: category.seeName, id: category.id } }" class="category-box">
+  <RouterLink :to="{ name: 'CategoryView', params: { category: category.seeName, categoryid: category.id } }"
+    class="category-box">
     <img class="category-img" :src="category.thumbnail" :alt="`Image of ${category.name}`">
     <span class="category-name">{{ category.name }}</span>
   </RouterLink>

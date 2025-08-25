@@ -16,9 +16,9 @@ import { defineAsyncComponent, type PropType } from 'vue';
 
 export default {
   components: {
-    ProductDetailSize: defineAsyncComponent(() => import("@/components/catalog/CProductDetailSize.vue")),
-    ProductDetailPrice: defineAsyncComponent(() => import("@/components/catalog/CProductDetailPrice.vue")),
-    ProductDetailAdd: defineAsyncComponent(() => import("@/components/catalog/CProductDetailAdd.vue")),
+    ProductDetailSize: defineAsyncComponent(() => import("@/components/catalog/productDetail/CProductDetailSize.vue")),
+    ProductDetailPrice: defineAsyncComponent(() => import("@/components/catalog/productDetail/CProductDetailPrice.vue")),
+    ProductDetailAdd: defineAsyncComponent(() => import("@/components/catalog/productDetail/CProductDetailAdd.vue")),
   },
   props: {
     product: {

@@ -2,56 +2,62 @@
   <main>
     <CategorySlider />
     <SubCategorySlider />
-    <div class="items">
-      <template v-for="product, index in products" :key="index">
-        <ProductBox :product="product" />
+    <SubCategoryList>
+      <template v-for="subCategoryId, index in Object.keys(subCategoryProducts)" :key="index">
+        <SubCategory :sub-category="subCategories.find(s => s.id.toString() == subCategoryId)">
+          <template v-for="product, productIndex in subCategoryProducts[parseInt(subCategoryId)]" :key="productIndex">
+            <ProductBox :product="product" />
+          </template>
+        </SubCategory>
       </template>
-    </div>
-    <Pagination :index="page" :max="8" />
+    </SubCategoryList>
   </main>
 </template>
 <script lang="ts">
-import { getRandomProducts } from '@/services/client/randomService';
+import { getRandomSubCategoryProducts } from '@/services/client/randomService';
 import { useCatalogStore } from '@/stores/catalog';
 import type { UProduct } from '@/types/catalog';
 import { defineAsyncComponent } from 'vue';
 
+
 export default {
   components: {
     CategorySlider: defineAsyncComponent(() => import("@/components/catalog/CCategorySlider.vue")),
-    Pagination: defineAsyncComponent(() => import("@/components/common/CPagination.vue")),
-    ProductBox: defineAsyncComponent(() => import("@/components/catalog/CProductBox.vue"))
+    SubCategorySlider: defineAsyncComponent(() => import("@/components/catalog/CSubCategorySlider.vue")),
+    SubCategoryList: defineAsyncComponent(() => import("@/components/catalog/CSubCategoryList.vue")),
+    SubCategory: defineAsyncComponent(() => import("@/components/catalog/CSubCategory.vue")),
+    ProductBox: defineAsyncComponent(() => import("@/components/catalog/CProductBox.vue")),
   },
   data() {
     return {
       catalogStore: useCatalogStore(),
-      products: [] as UProduct[]
+      subCategoryProducts: {} as Record<number, UProduct[]>
+    }
+  },
+  methods: {
+    loadProducts() {
+
     }
   },
   computed: {
-    title() {
-      const seeTitle = this.$route.params.title as string | undefined
-      const title = (seeTitle ?? "").replace("-", " ")
-      return title
+    categoryId() {
+      return (this.$route.params.categoryid ?? "0") as string
     },
-    page() {
-      const pageQuery = this.$route.query.page as string | undefined
-      const page = parseInt(pageQuery || "0")
-      return isNaN(page) ? 0 : page
+    subcategoryId() {
+      return (this.$route.params.subcategoryid ?? "0") as string
+    },
+    subCategories() {
+      if (Object.keys(this.catalogStore.subCategories).length == 0) return []
+      const id = parseInt(this.categoryId)
+      return this.catalogStore.subCategories[id ?? 0]
     }
   },
   watch: {
-    page() {
-      this.products = []
-      setTimeout(async () => {
-        this.products = await getRandomProducts(20)
-      }, 1000);
+    subCategories() {
+      setTimeout(async () => this.subCategoryProducts = await getRandomSubCategoryProducts(this.subCategories), 1000);
     }
   },
   mounted() {
-    setTimeout(async () => {
-      this.products = await getRandomProducts(20)
-    }, 1000);
   }
 }
 </script>
@@ -60,7 +66,7 @@ export default {
 @reference '@/assets/main.css';
 
 main {
-  @apply flex flex-col gap-1 overflow-hidden h-full grow;
+  @apply flex flex-col overflow-hidden h-full grow;
 }
 
 h2 {

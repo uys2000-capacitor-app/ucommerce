@@ -2,7 +2,8 @@
   <div class="category-slider">
     <template v-for="category, index in catalogStore.categories" :key="index">
       <RouterLink class="category-item" :class="{ active: index.toString() === categoryId }"
-        :to="{ name: 'CategoryView', params: { name: category.seeName, id: category.id } }">
+        :to="{ name: 'CategoryView', params: { category: category.seeName, categoryid: category.id } }"
+        @click="() => toSubCategory(0)">
         {{ category.name }}
       </RouterLink>
     </template>
@@ -17,38 +18,54 @@ export default {
   components: { RouterLink },
   data() {
     return {
-      catalogStore: useCatalogStore()
+      catalogStore: useCatalogStore(),
+      toCenterTimeout: 0,
+      toSubCategoryTimeout: 0,
     }
   },
   methods: {
     toCenter() {
-      setTimeout(() => {
+      this.toCenterTimeout = setTimeout(() => {
         const category = document.querySelector('.category-item.active') as HTMLElement
         category.scrollIntoView({
           block: "center",
           inline: 'center',
           behavior: "smooth"
         })
+      }, 100)
+    },
+    toSubCategory(id: number) {
+      this.toSubCategoryTimeout = setTimeout(() => {
+        const title = document.querySelector(`#subcategory-${id}`) as HTMLElement
+        title?.scrollIntoView({
+          behavior: "smooth"
+        })
       })
     },
     loadCategories() {
       setTimeout(async () => {
-        this.catalogStore.categories = await getRandomCategoryInfos()
+        this.catalogStore.categories = await getRandomCategoryInfos(20)
+        this.toCenter()
       }, 1000);
     }
   },
   computed: {
     categoryId() {
-      return this.$route.params.id as string
+      return this.$route.params.categoryid as string
     }
   },
   watch: {
     categoryId() {
-      this.toCenter()
+      if (this.categoryId) this.toCenter()
     }
   },
   mounted() {
     if (this.catalogStore.categories.length == 0) this.loadCategories()
+    else this.toCenter()
+  },
+  beforeUnmount() {
+    clearTimeout(this.toCenterTimeout)
+    clearTimeout(this.toSubCategoryTimeout)
   }
 }
 </script>

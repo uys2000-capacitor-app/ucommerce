@@ -24,8 +24,13 @@ export default [
         component: () => import('../views/HomeView.vue'),
       },
       {
-        path: 'categories/:name-:id(\\d+)',
+        path: 'categories/:category-:categoryid(\\d+)',
         name: 'CategoryView',
+        component: () => import('../views/CategoryView.vue'),
+      },
+      {
+        path: 'categories/:category-:categoryid(\\d+)/:subcategory-:subcategoryid(\\d+)',
+        name: 'SubCategoryView',
         component: () => import('../views/CategoryView.vue'),
       },
       {

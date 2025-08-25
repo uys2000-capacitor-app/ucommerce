@@ -7,6 +7,7 @@ export const useCatalogStore = defineStore('catalog', {
       amount: 1,
       product: {} as UProduct,
       categories: [] as UCategoryInfo[],
+      subCategories: {} as Record<number, UCategoryInfo[]>,
       isProductModalVisible: false,
     }
   },

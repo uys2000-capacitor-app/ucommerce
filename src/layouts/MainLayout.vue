@@ -24,7 +24,7 @@ export default {
     RouterView, Transition, KeepAlive,
     TheHeader: defineAsyncComponent(() => import('@/components/shared/TheHeader.vue')),
     TheDock: defineAsyncComponent(() => import('@/components/shared/TheDock.vue')),
-    ProductModal: defineAsyncComponent(() => import('@/components/catalog/CProductModal.vue')),
+    ProductModal: defineAsyncComponent(() => import('@/components/catalog/productDetail/CProductModal.vue')),
   }
 }
 </script>

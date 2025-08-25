@@ -21,8 +21,8 @@ import { getDiscount, hasDiscount } from '@/services/client/productUtility';
 export default {
   components: {
     Modal: defineAsyncComponent(() => import("@/components/common/CModal.vue")),
-    ProductImages: defineAsyncComponent(() => import("@/components/catalog/CProductImages.vue")),
-    ProductDetail: defineAsyncComponent(() => import("@/components/catalog/CProductDetail.vue")),
+    ProductImages: defineAsyncComponent(() => import("@/components/catalog/productDetail/CProductImages.vue")),
+    ProductDetail: defineAsyncComponent(() => import("@/components/catalog/productDetail/CProductDetail.vue")),
   },
   data() {
     return {
