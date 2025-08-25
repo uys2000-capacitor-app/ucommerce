@@ -35,9 +35,7 @@ export default {
     }
   },
   methods: {
-    loadProducts() {
 
-    }
   },
   computed: {
     categoryId() {
@@ -54,7 +52,8 @@ export default {
   },
   watch: {
     subCategories() {
-      setTimeout(async () => this.subCategoryProducts = await getRandomSubCategoryProducts(this.subCategories), 1000);
+      this.subCategoryProducts = {}
+      setTimeout(async () => this.subCategoryProducts = await getRandomSubCategoryProducts(this.subCategories), 4000);
     }
   },
   mounted() {

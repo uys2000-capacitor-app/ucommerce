@@ -3,7 +3,7 @@
     <template v-for="category, index in catalogStore.categories" :key="index">
       <RouterLink class="category-item" :class="{ active: index.toString() === categoryId }"
         :to="{ name: 'CategoryView', params: { category: category.seeName, categoryid: category.id } }"
-        @click="() => toSubCategory(0)">
+        @click="onClick">
         {{ category.name }}
       </RouterLink>
     </template>
@@ -24,6 +24,9 @@ export default {
     }
   },
   methods: {
+    onClick() {
+      this.toSubCategory(0)
+    },
     toCenter() {
       this.toCenterTimeout = setTimeout(() => {
         const category = document.querySelector('.category-item.active') as HTMLElement

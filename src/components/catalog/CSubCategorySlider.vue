@@ -3,7 +3,7 @@
     <template v-for="subCategory, index in subCategories" :key="index">
       <RouterLink class="subcategory-item" :class="{ active: index.toString() === subcategoryId }"
         :to="{ name: 'SubCategoryView', params: { subcategory: subCategory.seeName, subcategoryid: subCategory.id } }"
-        @click="() => toSubCategory(subCategory.id)">
+        @click="onClick">
         {{ subCategory.name }}
       </RouterLink>
     </template>
@@ -26,6 +26,10 @@ export default {
     }
   },
   methods: {
+    onClick() {
+      const subcategoryId = parseInt(this.subcategoryId)
+      this.toSubCategory(subcategoryId)
+    },
     toCenter() {
       this.toCenterTimeout = setTimeout(() => {
         const category = document.querySelector('.subcategory-item.active') as HTMLElement
