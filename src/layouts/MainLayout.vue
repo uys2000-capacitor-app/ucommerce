@@ -1,27 +1,47 @@
 <template>
-  <div class="drawer">
-    <input id="drawer" type="checkbox" class="drawer-toggle" />
-    <div class="drawer-content flex flex-col">
-      <TheHeader />
+  <div id="layout">
+    <TheHeader />
+    <div id="layout-content">
       <RouterView v-slot="{ Component }">
         <Transition name="layout">
-          <component :is="Component" />
+          <KeepAlive>
+            <component :is="Component" />
+          </KeepAlive>
         </Transition>
       </RouterView>
     </div>
-    <TheDrawer />
+    <TheDock />
+    <ProductModal />
   </div>
 </template>
 
 <script lang="ts">
-import { defineAsyncComponent, Transition } from 'vue';
+import { defineAsyncComponent, Transition, KeepAlive } from 'vue';
 import { RouterView } from 'vue-router'
 
 export default {
   components: {
-    RouterView, Transition,
+    RouterView, Transition, KeepAlive,
     TheHeader: defineAsyncComponent(() => import('@/components/shared/TheHeader.vue')),
-    TheDrawer: defineAsyncComponent(() => import('@/components/shared/TheDrawer.vue'))
+    TheDock: defineAsyncComponent(() => import('@/components/shared/TheDock.vue')),
+    ProductModal: defineAsyncComponent(() => import('@/components/catalog/CProductModal.vue')),
   }
 }
 </script>
+
+<style scoped>
+@reference '@/assets/main.css';
+
+#layout {
+  @apply flex flex-col flex-nowrap;
+  height: 100vh;
+  height: 100dvh;
+  width: 100vw;
+  width: 100dvw;
+}
+
+#layout-content {
+  @apply flex flex-col flex-nowrap shrink;
+  @apply h-full w-full grow overflow-hidden;
+}
+</style>
