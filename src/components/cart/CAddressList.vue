@@ -1,11 +1,11 @@
 <template>
   <div class="address-list">
     <template v-for="address, index in accountStore.addresses" :key="index">
-      <div class="flex gap-2 items-center bg-base-100 p-2">
+      <div class="flex gap-2 items-center bg-base-100 p-2 w-[calc(100vw-2.25rem)]">
         <span>
           {{ address.title }}
         </span>
-        <span class="text-nowrap text-ellipsis mr-auto text-xs">
+        <span class="mr-auto text-xs text-nowrap overflow-hidden text-ellipsis">
           {{ address.content }}
         </span>
         <button class="btn" @click="() => onChoose(address)">

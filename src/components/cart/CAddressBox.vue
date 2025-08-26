@@ -3,9 +3,9 @@
     <template v-if="address">
       <DCollapse :isOpen="isOpen">
         <template #title>
-          <div class="flex items-center gap-2">
+          <div class="flex items-center gap-2 w-[calc(100vw-2rem)]">
             <span>{{ address.title }}</span>
-            <span class="text-nowrap text-ellipsis mr-auto text-xs">
+            <span class="mr-auto text-xs text-nowrap overflow-hidden text-ellipsis">
               {{ address.content }}
             </span>
             <button v-if="!isOpen" class="btn ml-auto" @click="isOpen = !isOpen">Chooe</button>
@@ -73,7 +73,7 @@ export default {
 
 .address-box {
   @apply flex flex-row items-center gap-1;
-  @apply bg-base-200;
+  @apply bg-base-200 shrink-0;
 }
 
 .collapse-title {
