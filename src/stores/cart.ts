@@ -1,9 +1,11 @@
+import type { UAddress } from '@/types/account'
 import type { UProduct, UProductFull } from '@/types/catalog'
 import { defineStore } from 'pinia'
 
-export const useCardStore = defineStore('card', {
+export const useCartStore = defineStore('cart', {
   state() {
     return {
+      address: {} as UAddress,
       products: [] as Array<{ amount: number; product: UProduct }>,
     }
   },

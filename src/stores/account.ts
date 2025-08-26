@@ -21,8 +21,8 @@ export const useAccountStore = defineStore('account', {
       this.address = {} as UAddress
       this.isAddressModalVisible = false
     },
-    openAddressModal(product: UAddress) {
-      this.address = product
+    openAddressModal(address: UAddress) {
+      this.address = address
       this.isAddressModalVisible = true
     },
   },

@@ -53,7 +53,7 @@ export default {
   watch: {
     subCategories() {
       this.subCategoryProducts = {}
-      setTimeout(async () => this.subCategoryProducts = await getRandomSubCategoryProducts(this.subCategories), 4000);
+      setTimeout(async () => this.subCategoryProducts = await getRandomSubCategoryProducts(this.subCategories), 1000);
     }
   },
   mounted() {

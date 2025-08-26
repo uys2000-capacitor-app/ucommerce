@@ -20,7 +20,7 @@
 
 <script lang="ts">
 import { hasDiscount } from '@/services/client/productUtility';
-import { useCardStore } from '@/stores/cart';
+import { useCartStore } from '@/stores/cart';
 import { useCatalogStore } from '@/stores/catalog';
 import type { UProductFull } from '@/types/catalog';
 import { defineAsyncComponent, type PropType } from 'vue';
@@ -38,7 +38,7 @@ export default {
   data() {
     return {
       catalogStore: useCatalogStore(),
-      cardStore: useCardStore()
+      cardStore: useCartStore()
     }
   },
   methods: {

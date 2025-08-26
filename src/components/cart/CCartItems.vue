@@ -4,7 +4,6 @@
       <template v-for="cardProduct, index in cardStore.products" :key="index">
         <CartProduct :product="cardProduct.product" v-model:amount="cardProduct.amount" />
       </template>
-      <RouterLink class="cart-buy" :to="{ name: 'CartAddressView' }">Buy</RouterLink>
     </template>
     <template v-else>
       <div class="cart-empty">
@@ -20,11 +19,9 @@
 <script lang="ts">
 import { useCartStore } from '@/stores/cart';
 import { defineAsyncComponent } from 'vue';
-import { RouterLink } from 'vue-router';
 
 export default {
   components: {
-    RouterLink,
     CartProduct: defineAsyncComponent(() => import("@/components/cart/CCartProduct.vue")),
     EmptyCart: defineAsyncComponent(() => import("@/components/icon/IEmptyCart.vue")),
   },

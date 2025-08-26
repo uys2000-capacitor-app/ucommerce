@@ -1,5 +1,5 @@
 <template>
-  <div class="card-product" @click="onProductClicked">
+  <div class="cart-product" @click="onProductClicked">
     <img :src="product.thumbnail" :alt="`Image of ${product.name}`">
     <div>
       {{ product.name }}
@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts">
-import { useCardStore } from '@/stores/cart';
+import { useCartStore } from '@/stores/cart';
 import { useCatalogStore } from '@/stores/catalog';
 import type { UProduct } from '@/types/catalog';
 import { defineAsyncComponent, type PropType } from 'vue';
@@ -36,7 +36,7 @@ export default {
   },
   data() {
     return {
-      cardStore: useCardStore(),
+      cardStore: useCartStore(),
       catalogStore: useCatalogStore()
     }
   },
@@ -67,12 +67,12 @@ export default {
 <style scoped>
 @reference '@/assets/main.css';
 
-.card-product {
+.cart-product {
   @apply bg-base-300;
   @apply w-full flex gap-1 items-center justify-between p-2;
 }
 
-.card-product img {
+.cart-product img {
   @apply w-20 h-20 rounded-box;
 }
 </style>

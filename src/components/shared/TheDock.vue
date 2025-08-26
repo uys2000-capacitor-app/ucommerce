@@ -21,7 +21,7 @@
 </template>
 
 <script lang="ts">
-import { useCardStore } from '@/stores/cart';
+import { useCartStore } from '@/stores/cart';
 import { defineAsyncComponent } from 'vue';
 
 export default {
@@ -38,7 +38,7 @@ export default {
   },
   data() {
     return {
-      cardStore: useCardStore()
+      cardStore: useCartStore()
     }
   },
   computed: {
@@ -58,7 +58,7 @@ export default {
       return this.$route.name == 'UserView'
     },
     isUserChildViewActive() {
-      return this.$route.name == 'UserView'
+      return this.$route.name == 'UserView' || this.$route.name == 'UserAddressesView'
     }
   }
 }

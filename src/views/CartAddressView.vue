@@ -1,24 +1,31 @@
 <template>
-  <div class="card-items">
-    <template v-for="cardProduct, index in cardStore.products" :key="index">
-      <CardProduct :product="cardProduct.product" v-model:amount="cardProduct.amount" />
+  <div class="cart-address">
+    <AddressBox :address="cardStore.address" />
+    <template v-if="cardStore.address">
+      <button class="btn btn-primary m-auto mb-4 w-1/2">
+        Order Now
+      </button>
     </template>
-    <button v-if="cardStore.items != 0" class="card-buy">Buy</button>
   </div>
 </template>
 
 <script lang="ts">
-import { useCardStore } from '@/stores/cart';
+import { useAccountStore } from '@/stores/account';
+import { useCartStore } from '@/stores/cart';
 import { defineAsyncComponent } from 'vue';
 
 export default {
   components: {
-    CardProduct: defineAsyncComponent(() => import("@/components/card/CCardProduct.vue"))
+    AddressBox: defineAsyncComponent(() => import("@/components/cart/CAddressBox.vue"))
   },
   data() {
     return {
-      cardStore: useCardStore()
+      accounStore: useAccountStore(),
+      cardStore: useCartStore(),
     }
+  },
+  mounted() {
+    this.cardStore.address = this.accounStore.addresses[0]
   }
 }
 </script>
@@ -26,23 +33,8 @@ export default {
 <style scoped>
 @reference '@/assets/main.css';
 
-main {
-  @apply flex flex-col flex-nowrap;
+.cart-address {
+  @apply flex flex-col flex-nowrap h-full grow;
   @apply overflow-hidden;
-}
-
-h2 {
-  @apply text-xl font-bold p-4;
-}
-
-.card-items {
-  @apply flex flex-col h-full grow gap-1;
-  @apply overflow-auto relative;
-}
-
-
-.card-buy {
-  @apply sticky bottom-0 left-0;
-  @apply btn btn-primary w-1/2 m-2 ml-auto;
 }
 </style>

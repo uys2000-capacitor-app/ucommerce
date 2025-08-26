@@ -15,7 +15,7 @@
 <script lang="ts">
 import { getDiscount, hasDiscount } from '@/services/client/productUtility';
 import { isVisibleInViewportListener, } from '@/services/client/utility';
-import { useCardStore } from '@/stores/cart';
+import { useCartStore } from '@/stores/cart';
 import { useCatalogStore } from '@/stores/catalog';
 import type { UProduct } from '@/types/catalog';
 import type { PropType } from 'vue';
@@ -31,7 +31,7 @@ export default {
     return {
       image: "/loading.gif",
       catalogStore: useCatalogStore(),
-      cardStore: useCardStore()
+      cardStore: useCartStore()
     }
   },
   methods: {

@@ -1,20 +1,33 @@
 <template>
   <main>
-    <h2>Cart</h2>
-    <router-view />
+    <AddressBox v-if="cardStore.products.length != 0" :address="cardStore.address" />
+    <CartItems />
+    <template v-if="cardStore.address && cardStore.products.length != 0">
+      <button class="btn btn-primary m-auto mb-4 w-1/2">
+        Order Now
+      </button>
+    </template>
   </main>
 </template>
 
 <script lang="ts">
-import { useCardStore } from '@/stores/cart';
+import { useAccountStore } from '@/stores/account';
+import { useCartStore } from '@/stores/cart';
+import { defineAsyncComponent } from 'vue';
 
 export default {
   components: {
+    AddressBox: defineAsyncComponent(() => import("@/components/cart/CAddressBox.vue")),
+    CartItems: defineAsyncComponent(() => import("@/components/cart/CCartItems.vue")),
   },
   data() {
     return {
-      cardStore: useCardStore()
+      accounStore: useAccountStore(),
+      cardStore: useCartStore(),
     }
+  },
+  mounted() {
+    this.cardStore.address = this.accounStore.addresses[0]
   }
 }
 </script>
@@ -23,7 +36,7 @@ export default {
 @reference '@/assets/main.css';
 
 main {
-  @apply flex flex-col flex-nowrap h-full grow;
+  @apply flex flex-col flex-nowrap h-full grow gap-2;
   @apply overflow-hidden;
 }
 

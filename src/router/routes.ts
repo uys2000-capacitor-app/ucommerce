@@ -16,6 +16,11 @@ export default [
             name: 'CartItemsView',
             component: () => import('../views/CartItemsView.vue'),
           },
+          {
+            path: 'address',
+            name: 'CartAddressView',
+            component: () => import('../views/CartAddressView.vue'),
+          },
         ],
       },
       {

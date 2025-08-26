@@ -61,10 +61,10 @@ export const getRandomProduct = async (index: number = 0) => {
   }
 }
 
-export const getRandomProducts = async (amount: number = 10, random = false) => {
+export const getRandomProducts = async (amount: number = 10) => {
   const products = [] as UProduct[]
   for (let index = 0; index < amount; index++) {
-    products.push(await getRandomProduct(random ? 0 : index))
+    products.push(await getRandomProduct(index))
   }
   return products
 }
@@ -73,10 +73,7 @@ export const getRandomSubCategoryProducts = async (subCategories: UCategoryInfo[
   const subCategoryProducts = {} as Record<number, UProduct[]>
   for (let index = 0; index < subCategories.length; index++) {
     const random = Math.floor(Math.random() * 30)
-    subCategoryProducts[subCategories[index].id] = await getRandomProducts(
-      random == 0 ? 4 : random,
-      true,
-    )
+    subCategoryProducts[subCategories[index].id] = await getRandomProducts(random == 0 ? 4 : random)
   }
   return subCategoryProducts
 }
