@@ -38,6 +38,11 @@ export default [
         name: 'UserView',
         component: () => import('../views/UserView.vue'),
       },
+      {
+        path: 'user/address',
+        name: 'UserAddressesView',
+        component: () => import('../views/UserAddressesView.vue'),
+      },
     ],
   },
 ] as RouteRecordRaw[]

@@ -12,6 +12,7 @@
     </div>
     <TheDock />
     <ProductModal />
+    <AddressModal />
   </div>
 </template>
 
@@ -25,6 +26,7 @@ export default {
     TheHeader: defineAsyncComponent(() => import('@/components/shared/TheHeader.vue')),
     TheDock: defineAsyncComponent(() => import('@/components/shared/TheDock.vue')),
     ProductModal: defineAsyncComponent(() => import('@/components/catalog/productDetail/CProductModal.vue')),
+    AddressModal: defineAsyncComponent(() => import('@/components/account/AAddressModal.vue')),
   }
 }
 </script>
