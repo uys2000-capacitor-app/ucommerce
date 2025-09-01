@@ -4,13 +4,20 @@
     <OptionList>
       <OptionItem label="My Orders" :to="{ name: 'HomeView' }" />
       <OptionItem label="My Addresses" :to="{ name: 'UserAddressesView' }" />
-      <OptionItem label="My Account" :to="{ name: 'HomeView' }" />
-      <OptionItem label="Sign Out" :to="{ name: 'HomeView' }" />
+      <template v-if="accountStore.isLogged">
+        <OptionItem label="My Account" :to="{ name: 'HomeView' }" />
+        <OptionItem label="Sign Out" :to="{ hash: '#signout' }" />
+      </template>
+      <template v-else>
+        <OptionItem label="Sign In" :to="{ name: 'SignView' }" />
+      </template>
     </OptionList>
   </main>
 </template>
 
 <script lang="ts">
+import { setPrefence } from '@/services/capacitor/preferences';
+import { signOut } from '@/services/server/authentication';
 import { useAccountStore } from '@/stores/account';
 import { defineAsyncComponent } from 'vue';
 
@@ -23,6 +30,30 @@ export default {
   data() {
     return {
       accountStore: useAccountStore()
+    }
+  },
+  methods: {
+    async signOut() {
+      const result = await signOut()
+      if (result) {
+        this.accountStore.isLogged = false
+        const defaultUser = {
+          name: 'Anon',
+          email: '',
+        }
+        this.accountStore.user = defaultUser
+        setPrefence("authToken", "")
+      }
+    }
+  },
+  computed: {
+    hash() {
+      return this.$route.hash
+    }
+  },
+  watch: {
+    hash() {
+      if (this.hash == "#signout") this.signOut()
     }
   }
 }

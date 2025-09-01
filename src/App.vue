@@ -10,26 +10,33 @@
 import { Transition } from 'vue';
 import { RouterView } from 'vue-router'
 import { hideSplashScreen } from './services/capacitor/splashScreen';
-import { useCartStore } from './stores/cart';
-import { getRandomProduct } from './services/client/randomService';
+import { check, initUAuthService } from './services/server/authentication';
+import { getPrefence } from './services/capacitor/preferences';
 import { useAccountStore } from './stores/account';
 
 export default {
   components: { RouterView, Transition },
-  async mounted() {
-    hideSplashScreen()
-    if (false) {
-      const store = useCartStore()
-      store.products.push({ amount: 1, product: await getRandomProduct(0) })
-
-      const store2 = useAccountStore()
-      store2.addresses.push({
-        id: 0,
-        title: "Home",
-        phone: "0555 055 5555",
-        content: "Murat Pasa Caddesi Kazim Sokak. Numara:5 daire:8"
-      })
+  data() {
+    return {
+      accountStore: useAccountStore()
     }
+  },
+  methods: {
+    async setAndCheckAuth() {
+      const token = await getPrefence("authToken")
+      console.log(token)
+      if (token) initUAuthService(token)
+      else initUAuthService()
+      const result = await check()
+      if (result?.status) {
+        this.accountStore.isLogged = await result.status
+        this.accountStore.user = { name: result.name, email: result.email }
+      }
+    }
+  },
+  async mounted() {
+    await this.setAndCheckAuth()
+    hideSplashScreen()
   }
 }
 </script>

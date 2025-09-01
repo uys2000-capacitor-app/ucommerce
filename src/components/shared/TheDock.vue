@@ -4,7 +4,7 @@
       :class="{ 'dock-active': isCartViewActive, 'dock-child-active': isCartChildViewActive }">
       <div class="badge-wrapper">
         <IShoppingCart />
-        <div class="badge badge-xs badge-success" v-if="cardStore.items != 0">{{ cardStore.items }}</div>
+        <div class="badge badge-xs badge-primary" v-if="cardStore.items != 0">{{ cardStore.items }}</div>
       </div>
     </button>
 
@@ -52,7 +52,7 @@ export default {
       return this.$route.name == 'HomeView'
     },
     isHomeChildViewActive() {
-      return this.$route.name == 'HomeView' || this.$route.name == 'CategoryView'
+      return this.$route.name == 'HomeView' || this.$route.name == 'CategoryView' || this.$route.name == 'SubCategoryView'
     },
     isUserViewActive() {
       return this.$route.name == 'UserView'

@@ -44,6 +44,11 @@ export default [
         component: () => import('../views/UserView.vue'),
       },
       {
+        path: 'user/sign',
+        name: 'SignView',
+        component: () => import('../views/SignView.vue'),
+      },
+      {
         path: 'user/address',
         name: 'UserAddressesView',
         component: () => import('../views/UserAddressesView.vue'),

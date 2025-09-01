@@ -1334,6 +1334,31 @@
     "@typescript-eslint/types" "8.40.0"
     eslint-visitor-keys "^4.2.1"
 
+"@uys2000/u-auth@^0.0.10":
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/@uys2000/u-auth/-/u-auth-0.0.10.tgz#0ae8778608a0861e8df6d20e6aac83c6bc50c5b5"
+  integrity sha512-o6ScE+Uz2A3oWV4TBLWmpWOA4EvtVyAAjIgMRyb7mjb//fkQFU+rkL7NC53dyl3NV80HYvIEfeS9GALL64btrQ==
+  dependencies:
+    "@uys2000/u-host" "^0.0.3"
+    "@uys2000/u-http" "^0.0.1"
+
+"@uys2000/u-host@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@uys2000/u-host/-/u-host-0.0.1.tgz#d3c4f09487b6f419499ed43653742bce498060c5"
+  integrity sha512-XnRVfnwIr5aJE9aEtK9e5eBwJc3Won0mUtkg7pxZ3zKUqA0FWy/yx57OoZUTlLsISmOmvca7TCY1FifOqXpB3g==
+
+"@uys2000/u-host@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@uys2000/u-host/-/u-host-0.0.3.tgz#7a8262897ac65bb7dd75fec0d7b5fcd6cd0e636f"
+  integrity sha512-vuEwJzrtAiiCn8xpK2uppo22Xe4ka+PXIL+wMyoSWd0MAwMfz1+KbGyY1n2TlhiT2TeKOYvdjSLa+s8yN5BMYA==
+
+"@uys2000/u-http@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@uys2000/u-http/-/u-http-0.0.1.tgz#1cd218c0918b3172a5e87553d962a303a95ef0fb"
+  integrity sha512-vy2aw6j79NLx/urkDptd5JpzmQN0/7+IQAD710SlErgBh2wh0dQtwBmumBgjCYgWL2eAsazOUJd0IvsQScw5mA==
+  dependencies:
+    "@uys2000/u-host" "^0.0.1"
+
 "@vitejs/plugin-vue@^5.2.3":
   version "5.2.4"
   resolved "https://registry.yarnpkg.com/@vitejs/plugin-vue/-/plugin-vue-5.2.4.tgz#9e8a512eb174bfc2a333ba959bbf9de428d89ad8"

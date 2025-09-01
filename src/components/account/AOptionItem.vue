@@ -10,6 +10,7 @@ import { RouterLink, type RouteLocationRaw } from 'vue-router';
 
 export default {
   components: { RouterLink, },
+  emits: ["click"],
   props: {
     label: String,
     to: {

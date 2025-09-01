@@ -1,8 +1,6 @@
 export interface UUser {
-  id: number
   name: string
   email: string
-  phone: string
 }
 
 export interface UAddress {

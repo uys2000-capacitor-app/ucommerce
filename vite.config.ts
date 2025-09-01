@@ -13,4 +13,7 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
+  optimizeDeps: {
+    exclude: ['u-auth'], // dev ortamda prebundle etmez
+  },
 })

@@ -2,14 +2,13 @@ import type { UUser, UAddress } from '@/types/account'
 import { defineStore } from 'pinia'
 
 const defaultUser = {
-  id: 0,
   name: 'Anon',
-  phone: '0 555 555 5555',
-  email: 'anon@gamil.com',
+  email: '',
 }
 export const useAccountStore = defineStore('account', {
   state() {
     return {
+      isLogged: false,
       user: defaultUser as UUser,
       address: {} as UAddress,
       addresses: [] as Array<UAddress>,

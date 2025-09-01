@@ -1,6 +1,6 @@
 <template>
   <header>
-    <h1>App Title</h1>
+    <img src="/logo.png" alt="Yerel Market">
   </header>
 </template>
 
@@ -19,5 +19,9 @@ header {
   @apply flex flex-row justify-center;
   @apply w-full bg-base-300 p-4;
   @apply shrink-0;
+}
+
+img {
+  @apply h-12
 }
 </style>
