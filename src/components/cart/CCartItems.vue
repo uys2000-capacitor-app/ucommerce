@@ -1,7 +1,7 @@
 <template>
   <div class="cart-items">
-    <template v-if="cardStore.items != 0">
-      <template v-for="cardProduct, index in cardStore.products" :key="index">
+    <template v-if="cartStore.items != 0">
+      <template v-for="cardProduct, index in cartStore.products" :key="index">
         <CartProduct :product="cardProduct.product" v-model:amount="cardProduct.amount" />
       </template>
     </template>
@@ -27,7 +27,7 @@ export default {
   },
   data() {
     return {
-      cardStore: useCartStore()
+      cartStore: useCartStore()
     }
   }
 }

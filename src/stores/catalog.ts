@@ -1,4 +1,4 @@
-import type { UCategoryInfo, UProduct } from '@/types/catalog'
+import type { UCategoryInfo, UNotification, UNotificationType, UProduct } from '@/types/catalog'
 import { defineStore } from 'pinia'
 
 export const useCatalogStore = defineStore('catalog', {
@@ -8,6 +8,9 @@ export const useCatalogStore = defineStore('catalog', {
       product: {} as UProduct,
       categories: [] as UCategoryInfo[],
       subCategories: {} as Record<number, UCategoryInfo[]>,
+      notifications: [] as UNotification[],
+      isLogged: false,
+      user: { name: '', email: '' },
       isProductModalVisible: false,
     }
   },
@@ -19,6 +22,12 @@ export const useCatalogStore = defineStore('catalog', {
     openProductModal(product: UProduct) {
       this.product = product
       this.isProductModalVisible = true
+    },
+    addNotification(label: string, type: UNotificationType, timeout: number = 0) {
+      this.notifications.push({ id: Date.now(), timeout, label, type })
+    },
+    removeNotification(id: number) {
+      this.notifications = this.notifications.filter((n) => n.id != id)
     },
   },
 })

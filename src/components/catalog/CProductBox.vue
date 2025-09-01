@@ -31,7 +31,7 @@ export default {
     return {
       image: "/loading.gif",
       catalogStore: useCatalogStore(),
-      cardStore: useCartStore()
+      cartStore: useCartStore()
     }
   },
   methods: {
@@ -41,7 +41,7 @@ export default {
         this.catalogStore.openProductModal(this.product)
     },
     onProductAdded() {
-      this.cardStore.addToCard(this.product)
+      this.cartStore.addToCard(this.product)
     }
   },
   computed: {

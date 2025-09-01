@@ -9,6 +9,7 @@
           </KeepAlive>
         </Transition>
       </RouterView>
+      <TheNotifications />
     </div>
     <TheDock />
     <ProductModal />
@@ -25,6 +26,7 @@ export default {
     RouterView, Transition, KeepAlive,
     TheHeader: defineAsyncComponent(() => import('@/components/shared/TheHeader.vue')),
     TheDock: defineAsyncComponent(() => import('@/components/shared/TheDock.vue')),
+    TheNotifications: defineAsyncComponent(() => import('@/components/shared/TheNotifications.vue')),
     ProductModal: defineAsyncComponent(() => import('@/components/catalog/productDetail/CProductModal.vue')),
     AddressModal: defineAsyncComponent(() => import('@/components/account/AAddressModal.vue')),
   }
@@ -35,7 +37,7 @@ export default {
 @reference '@/assets/main.css';
 
 #layout {
-  @apply flex flex-col flex-nowrap;
+  @apply flex flex-col flex-nowrap relative;
   height: 100vh;
   height: 100dvh;
   width: 100vw;
@@ -43,7 +45,7 @@ export default {
 }
 
 #layout-content {
-  @apply flex flex-col flex-nowrap shrink;
+  @apply flex flex-col flex-nowrap shrink relative;
   @apply h-full w-full grow overflow-hidden;
 }
 </style>

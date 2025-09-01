@@ -38,12 +38,12 @@ export default {
   data() {
     return {
       catalogStore: useCatalogStore(),
-      cardStore: useCartStore()
+      cartStore: useCartStore()
     }
   },
   methods: {
     addToCard() {
-      this.cardStore.addToCardMultiple(this.product, this.catalogStore.amount)
+      this.cartStore.addToCardMultiple(this.product, this.catalogStore.amount)
     }
   },
   computed: {

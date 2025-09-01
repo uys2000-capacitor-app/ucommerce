@@ -1,4 +1,5 @@
 import type { UAddress } from '@/types/account'
+import type { UCartOrder, UCartProduct } from '@/types/cart'
 import type { UProduct, UProductFull } from '@/types/catalog'
 import { defineStore } from 'pinia'
 
@@ -6,7 +7,8 @@ export const useCartStore = defineStore('cart', {
   state() {
     return {
       address: {} as UAddress,
-      products: [] as Array<{ amount: number; product: UProduct }>,
+      products: [] as UCartProduct[],
+      orders: [] as UCartOrder[],
     }
   },
   actions: {

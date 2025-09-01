@@ -1,10 +1,10 @@
 <template>
   <nav class="dock">
-    <button @click="$router.push({ name: 'CartItemsView' })"
+    <button @click="$router.push({ name: 'CartView' })"
       :class="{ 'dock-active': isCartViewActive, 'dock-child-active': isCartChildViewActive }">
       <div class="badge-wrapper">
         <IShoppingCart />
-        <div class="badge badge-xs badge-primary" v-if="cardStore.items != 0">{{ cardStore.items }}</div>
+        <div class="badge" v-if="cartStore.items != 0">{{ cartStore.items }}</div>
       </div>
     </button>
 
@@ -38,12 +38,12 @@ export default {
   },
   data() {
     return {
-      cardStore: useCartStore()
+      cartStore: useCartStore()
     }
   },
   computed: {
     isCartViewActive() {
-      return this.$route.name == 'CartItemsView'
+      return this.$route.name == 'CartView'
     },
     isCartChildViewActive() {
       return this.$route.name == 'CartView' || this.$route.name == 'CartItemsView'
@@ -58,7 +58,7 @@ export default {
       return this.$route.name == 'UserView'
     },
     isUserChildViewActive() {
-      return this.$route.name == 'UserView' || this.$route.name == 'UserAddressesView'
+      return this.$route.name == 'UserView' || this.$route.name == 'UserAddressesView' || this.$route.name == 'SignView' || this.$route.name == 'OrdersView'
     }
   }
 }
@@ -76,7 +76,7 @@ export default {
 }
 
 .dock .badge-wrapper .badge {
-  @apply absolute top-0 -right-2;
+  @apply absolute top-0 -right-2 badge-xs badge-primary;
 }
 
 .dock :deep(svg) {

@@ -41,10 +41,12 @@
 import { setPrefence } from '@/services/capacitor/preferences';
 import { signIn, signUp } from '@/services/server/authentication';
 import { useAccountStore } from '@/stores/account';
+import { useCatalogStore } from '@/stores/catalog';
 
 export default {
   data() {
     return {
+      catalogStore: useCatalogStore(),
       accountStore: useAccountStore(),
       isSignIn: true,
       name: "",
@@ -60,21 +62,31 @@ export default {
       this.password = ""
     },
     async signIn() {
-      const result = await signIn(this.email, this.password, "android")
-      if (result) {
-        await setPrefence("authToken", result.token)
-        this.accountStore.isLogged = true
-        this.accountStore.user = { name: result.name, email: result.email }
-        this.$router.push({ name: "UserView" })
+      try {
+        const result = await signIn(this.email, this.password, "android")
+        if (result) {
+          await setPrefence("authToken", result.token)
+          this.accountStore.isLogged = true
+          this.accountStore.user = { name: result.name, email: result.email }
+          this.$router.push({ name: "UserView" })
+          this.catalogStore.addNotification("Signed in Successfully", "success", 2000)
+        } else this.catalogStore.addNotification("Please check your info", "error", 2000)
+      } catch {
+        this.catalogStore.addNotification("Please check your info", "error", 2000)
       }
     },
     async signUp() {
-      const result = await signUp(this.name, this.email, this.password, "android")
-      if (result) {
-        await setPrefence("authToken", result.token)
-        this.accountStore.isLogged = true
-        this.accountStore.user = { name: result.name, email: result.email }
-        this.$router.push({ name: "UserView" })
+      try {
+        const result = await signUp(this.name, this.email, this.password, "android")
+        if (result) {
+          await setPrefence("authToken", result.token)
+          this.accountStore.isLogged = true
+          this.accountStore.user = { name: result.name, email: result.email }
+          this.$router.push({ name: "UserView" })
+          this.catalogStore.addNotification("Signed up Successfully", "success", 1000)
+        } else this.catalogStore.addNotification("Please check your info", "error", 1000)
+      } catch {
+        this.catalogStore.addNotification("Please check your info", "error", 1000)
       }
     }
   }

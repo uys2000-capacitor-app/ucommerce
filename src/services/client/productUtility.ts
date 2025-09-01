@@ -1,3 +1,4 @@
+import type { UCartProduct } from '@/types/cart'
 import type { UProduct, UProductFull } from '@/types/catalog'
 export const getPerPrice = (product: UProductFull) => {
   if (product.targetCount == 0 || isNaN(product.targetCount)) return 0
@@ -14,4 +15,8 @@ export const hasDiscount = (product: UProduct | UProductFull) => {
 export const getDiscount = (product: UProduct | UProductFull) => {
   const discount = product.oldprice - product.price
   return Math.floor((discount / product.oldprice) * 100)
+}
+
+export const getOrderTotal = (products: UCartProduct[]) => {
+  return products.map((p) => p.product.price * p.amount).reduce((s, a) => s + a, 0)
 }

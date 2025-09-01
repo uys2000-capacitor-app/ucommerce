@@ -1,9 +1,9 @@
 <template>
   <main>
-    <AddressBox v-if="cardStore.products.length != 0" :address="cardStore.address" />
+    <AddressBox v-if="cartStore.products.length != 0" :address="cartStore.address" />
     <CartItems />
-    <template v-if="cardStore.address && cardStore.products.length != 0">
-      <button class="btn btn-primary m-auto mb-4 w-1/2">
+    <template v-if="cartStore.address && cartStore.products.length != 0">
+      <button class="btn btn-primary m-auto mb-4 w-1/2" @click="addToCart">
         Order Now
       </button>
     </template>
@@ -13,6 +13,7 @@
 <script lang="ts">
 import { useAccountStore } from '@/stores/account';
 import { useCartStore } from '@/stores/cart';
+import { useCatalogStore } from '@/stores/catalog';
 import { defineAsyncComponent } from 'vue';
 
 export default {
@@ -22,12 +23,20 @@ export default {
   },
   data() {
     return {
+      catalogStore: useCatalogStore(),
       accounStore: useAccountStore(),
-      cardStore: useCartStore(),
+      cartStore: useCartStore(),
+    }
+  },
+  methods: {
+    addToCart() {
+      this.cartStore.orders.push({ timestamp: Date.now(), address: this.cartStore.address, products: this.cartStore.products })
+      this.cartStore.products = []
+      this.catalogStore.addNotification("Your order successfully created", "success", 2000)
     }
   },
   mounted() {
-    this.cardStore.address = this.accounStore.addresses[0]
+    this.cartStore.address = this.accounStore.addresses[0]
   }
 }
 </script>

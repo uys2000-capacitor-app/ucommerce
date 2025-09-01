@@ -21,12 +21,14 @@ export const signUp = async (
   platform: UPlatform,
 ) => {
   const response = await uAuthService.signUp(name, email, password, platform)
+  uAuthService.token = response.token
   uSessionService.token = response.token
   return response
 }
 
 export const signIn = async (email: string, password: string, platform: UPlatform) => {
   const response = await uAuthService.signIn(email, password, platform)
+  uAuthService.token = response.token
   uSessionService.token = response.token
   return response
 }

@@ -1,13 +1,13 @@
 <template>
   <div class="cart-product" @click="onProductClicked">
     <img :src="product.thumbnail" :alt="`Image of ${product.name}`">
-    <div>
+    <div :class="{ 'mr-auto': hideAmount }">
       {{ product.name }}
     </div>
     <div>
       {{ product.price * amountValue }} {{ product.currency }}
     </div>
-    <div>
+    <div v-if="!hideAmount">
       <Counter :negative="true" :model-value="amountValue" @update:model-value="(n: number) => onUpdateAmount(n)" />
     </div>
   </div>
@@ -32,11 +32,15 @@ export default {
     amount: {
       type: Number,
       default: 1
+    },
+    hideAmount: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
     return {
-      cardStore: useCartStore(),
+      cartStore: useCartStore(),
       catalogStore: useCatalogStore()
     }
   },
@@ -48,7 +52,7 @@ export default {
     },
     onUpdateAmount(n: number) {
       if (n > 0) this.amountValue = n
-      else this.cardStore.removeFromCard(this.product)
+      else this.cartStore.removeFromCard(this.product)
     }
   },
   computed: {

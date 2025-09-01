@@ -10,18 +10,6 @@ export default [
         path: 'cart',
         name: 'CartView',
         component: () => import('../views/CartView.vue'),
-        children: [
-          {
-            path: '',
-            name: 'CartItemsView',
-            component: () => import('../views/CartItemsView.vue'),
-          },
-          {
-            path: 'address',
-            name: 'CartAddressView',
-            component: () => import('../views/CartAddressView.vue'),
-          },
-        ],
       },
       {
         path: '',
@@ -47,6 +35,11 @@ export default [
         path: 'user/sign',
         name: 'SignView',
         component: () => import('../views/SignView.vue'),
+      },
+      {
+        path: 'user/orders',
+        name: 'OrdersView',
+        component: () => import('../views/OrdersView.vue'),
       },
       {
         path: 'user/address',

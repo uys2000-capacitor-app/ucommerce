@@ -44,3 +44,11 @@ export interface UCategory {
   page: number
   maxPage: number
 }
+
+export type UNotificationType = 'success' | 'info' | 'warning' | 'error'
+export interface UNotification {
+  id: number
+  timeout: number
+  label: string
+  type: UNotificationType
+}

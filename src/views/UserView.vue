@@ -2,10 +2,9 @@
   <main>
     <AccountInfo :user="accountStore.user" class="mt-16 mb-8" />
     <OptionList>
-      <OptionItem label="My Orders" :to="{ name: 'HomeView' }" />
+      <OptionItem label="My Orders" :to="{ name: 'OrdersView' }" />
       <OptionItem label="My Addresses" :to="{ name: 'UserAddressesView' }" />
       <template v-if="accountStore.isLogged">
-        <OptionItem label="My Account" :to="{ name: 'HomeView' }" />
         <OptionItem label="Sign Out" :to="{ hash: '#signout' }" />
       </template>
       <template v-else>
@@ -44,6 +43,7 @@ export default {
         this.accountStore.user = defaultUser
         setPrefence("authToken", "")
       }
+      this.$router.push({ "hash": "" })
     }
   },
   computed: {
