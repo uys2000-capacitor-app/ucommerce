@@ -342,6 +342,11 @@
   dependencies:
     tslib "^2.1.0"
 
+"@capacitor/ios@^7.4.3":
+  version "7.4.3"
+  resolved "https://registry.yarnpkg.com/@capacitor/ios/-/ios-7.4.3.tgz#22c3438d139347a0f61c9ec14abd7dd0c8fbc241"
+  integrity sha512-VNm7cHODgh3KK/4ZC2rXU9gBlvHii/mYFLI+XMXwq24nhB679QxHhz+pUuI7PatYoM2q4MAL0NR/dRgehKCaSA==
+
 "@capacitor/preferences@^7.0.1":
   version "7.0.2"
   resolved "https://registry.yarnpkg.com/@capacitor/preferences/-/preferences-7.0.2.tgz#9557bd817b2f4cde942d3ce1cdf5abdb1292357f"

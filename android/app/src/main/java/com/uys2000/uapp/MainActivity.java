@@ -1,4 +1,4 @@
-package com.uys2000.uapp;
+package com.uys2000.yerelmarket;
 
 import com.getcapacitor.BridgeActivity;
 
